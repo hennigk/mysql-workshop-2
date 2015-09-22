@@ -1,0 +1,21 @@
+USE decodemtl_addressbook;
+
+mysql> SHOW TABLES;
++---------------------------------+
+| Tables_in_decodemtl_addressbook |
++---------------------------------+
+| Account                         |
+| AddressBook                     |
+| Entry                           |
++---------------------------------+
+
+mysql> DROP TABLE Account;
+
+
+mysql> SHOW TABLES;
++---------------------------------+
+| Tables_in_decodemtl_addressbook |
++---------------------------------+
+| AddressBook                     |
+| Entry                           |
++---------------------------------+
