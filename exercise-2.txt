@@ -1,0 +1,75 @@
+mysql> SHOW DATABASES;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| c9                    |
+| decodemtl_addressbook |
+| mysql                 |
+| performance_schema    |
++-----------------------+
+
+USE decodemtl_addressbook;
+
+mysql> SHOW TABLES;
++---------------------------------+
+| Tables_in_decodemtl_addressbook |
++---------------------------------+
+| Account                         |
+| AddressBook                     |
+| Entry                           |
+
+DESCRIBE Account;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| email      | varchar(255) | NO   |     | NULL    |                |
+| password   | varchar(40)  | NO   |     | NULL    |                |
+| createdOn  | datetime     | NO   |     | NULL    |                |
+| modifiedOn | datetime     | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+
+mysql> INSERT INTO Account (email, password, createdOn, modifiedOn) VALUES ("kayla.hennig@gmail.com", "hennigk", "2015-09-22 11-01-00", "2015-09-22 11-01-00");
+
+mysql> SELECT * FROM Account;
++----+------------------------+----------+---------------------+---------------------+
+| id | email                  | password | createdOn           | modifiedOn          |
++----+------------------------+----------+---------------------+---------------------+
+|  1 | kayla.hennig@gmail.com | hennigk  | 2015-09-22 11:01:00 | 2015-09-22 11:01:00 |
++----+------------------------+----------+---------------------+---------------------+
+
+mysql> DESCRIBE AddressBook;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| accountId  | int(11)      | NO   |     | NULL    |                |
+| name       | varchar(255) | NO   |     | NULL    |                |
+| createdOn  | datetime     | NO   |     | NULL    |                |
+| modifiedOn | datetime     | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+
+INSERT INTO AddressBook (accountId, name, createdOn, modifiedOn) VALUES ("1234567", "kayla hennig", "2015-09-22 11-04-00", "2015-09-22 11-04-00");
+
+SELECT * FROM AddressBook;
++----+-----------+--------------+---------------------+---------------------+
+| id | accountId | name         | createdOn           | modifiedOn          |
++----+-----------+--------------+---------------------+---------------------+
+|  1 |   1234567 | kayla hennig | 2015-09-22 11:04:00 | 2015-09-22 11:04:00 |
++----+-----------+--------------+---------------------+---------------------+
+
+mysql> DESCRIBE Entry;
+
+INSERT INTO Entry (addressBookId, firstName, lastName, birthday, type, subtype, contentLineOne) VALUES ("1234567", "kayla", "hennig", "1990-07-30 08-00-00", "home", "phone", "514-909-5159");
+INSERT INTO Entry (addressBookId, firstName, lastName, birthday, type, subtype, contentLineOne) VALUES ("1234568", "beijo", "hennig", "2015-02-15 03-06-40", "work", "phone", "514-582-2159");
+INSERT INTO Entry (addressBookId, firstName, lastName, birthday, type, subtype, contentLineOne) VALUES ("1234568", "dave", "fortin", "1987-04-29 09-00-00", "home", "email", "dave@gmail.com");
+
+mysql> SELECT * FROM Entry;
++----+---------------+-----------+----------+---------------------+------+---------+----------------+----------------+------------------+-----------------+-----------------+
+| id | addressBookId | firstName | lastName | birthday            | type | subtype | contentLineOne | contentLineTwo | contentLineThree | contentLineFour | contentLineFive |
++----+---------------+-----------+----------+---------------------+------+---------+----------------+----------------+------------------+-----------------+-----------------+
+|  1 |       1234567 | kayla     | hennig   | 1990-07-30 08:00:00 | home | phone   | 514-909-5159   | NULL           | NULL             | NULL            | NULL            |
+|  2 |       1234568 | beijo     | hennig   | 2015-02-15 03:06:40 | work | phone   | 514-582-2159   | NULL           | NULL             | NULL            | NULL            |
+|  3 |       1234568 | dave      | fortin   | 1987-04-29 09:00:00 | home | email   | dave@gmail.com | NULL           | NULL             | NULL            | NULL            |
++----+---------------+-----------+----------+---------------------+------+---------+----------------+----------------+------------------+-----------------+-----------------+
