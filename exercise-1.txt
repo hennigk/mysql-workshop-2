@@ -18,6 +18,7 @@ mysql> SOURCE data/import-table-structure.sql;
 
 mysql> SHOW TABLES; 
 
+
 +----------------------------------------+
 | Tables_in_decodemtl_addressbook_import |
 +----------------------------------------+
@@ -25,3 +26,42 @@ mysql> SHOW TABLES;
 | AddressBook                            |
 | Entry                                  |
 +----------------------------------------+
+
+mysql> DROP DATABASE decodemtl_addressbook_import;
+
+mysql> SHOW DATABASES;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| c9                    |
+| decodemtl_addressbook |
+| mysql                 |
+| performance_schema    |
++-----------------------+
+
+USE decodemtl_addressbook;
+
+SOURCE data/import-table-structure.sql;
+
+mysql> SHOW DATABASES;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| c9                    |
+| decodemtl_addressbook |
+| mysql                 |
+| performance_schema    |
++-----------------------+
+
+mysql> USE decodemtl_addressbook;
+Database changed
+mysql> SHOW TABLES;
++---------------------------------+
+| Tables_in_decodemtl_addressbook |
++---------------------------------+
+| Account                         |
+| AddressBook                     |
+| Entry                           |
++---------------------------------+
