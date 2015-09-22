@@ -1,0 +1,27 @@
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| c9                 |
+| mysql              |
+| performance_schema |
++--------------------+
+
+
+mysql> CREATE DATABASE decodemtl_addressbook;
+
+
+mysql> USE decodemtl_addressbook;
+
+mysql> SOURCE data/import-table-structure.sql;
+
+mysql> SHOW TABLES; 
+
++----------------------------------------+
+| Tables_in_decodemtl_addressbook_import |
++----------------------------------------+
+| Account                                |
+| AddressBook                            |
+| Entry                                  |
++----------------------------------------+
