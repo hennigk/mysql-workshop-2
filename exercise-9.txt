@@ -1,0 +1,22 @@
+mysql> USE decodemtl_addressbook_import;
+
+mysql> SELECT COUNT(*) FROM Account;
++----------+
+| COUNT(*) |
++----------+
+|     1000 |
++----------+
+
+mysql> SELECT COUNT(*) FROM AddressBook;                                                                                                 
++----------+
+| COUNT(*) |
++----------+
+|     1100 |
++----------+
+
+mysql> SELECT COUNT(*) FROM Entry;
++----------+
+| COUNT(*) |
++----------+
+|     4000 |
++----------+
