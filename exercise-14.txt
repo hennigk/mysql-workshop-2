@@ -1,0 +1,105 @@
+
+ 
+
+mysql> CREATE DATABASE store;
+
+mysql> USE store;
+
+mysql> CREATE TABLE item (id  int NOT NULL AUTO_INCREMENT, PRIMARY KEY(id) );
+
+mysql> CREATE TABLE transactions (id  int NOT NULL AUTO_INCREMENT, PRIMARY KEY(id) );                                                    
+
+mysql> SHOW TABLES;
++-----------------+
+| Tables_in_store |
++-----------------+
+| item            |
+| transactions    |
++-----------------+
+
+mysql> ALTER TABLE item ADD COLUMN productName VARCHAR(40) NOT NULL;
+
+mysql> ALTER TABLE item ADD COLUMN productDescription VARCHAR(255) NULL;
+
+mysql> ALTER TABLE item ADD COLUMN manufacturedBy VARCHAR(255) NOT NULL;
+
+mysql> ALTER TABLE item ADD COLUMN retailPrice INT(5) NOT NULL;
+
+mysql> ALTER TABLE item ADD COLUMN inventoryQuantity INT(11) NOT NULL;
+
+mysql> ALTER TABLE item ADD COLUMN lastModified DATETIME NOT NULL;
+
+mysql> RENAME TABLE transactions to transaction;
+
+mysql> ALTER TABLE transaction ADD COLUMN itemId INT(11) NOT NULL;
+
+mysql> ALTER TABLE transaction ADD COLUMN quantity INT(11) NOT NULL;
+
+mysql> ALTER TABLE transaction ADD COLUMN purchaseType ENUM("sale", "refund") NOT NULL;
+
+mysql> ALTER TABLE transaction ADD COLUMN saleType ENUM("internal", "external") NOT NULL;
+
+mysql> ALTER TABLE transaction ADD COLUMN transactionDate DATETIME NOT NULL;
+
+mysql> ALTER TABLE item CHANGE lastModified inventoryLastUpdated DATETIME;
+
+mysql> DESCRIBE item;
++----------------------+--------------+------+-----+---------+----------------+
+| Field                | Type         | Null | Key | Default | Extra          |
++----------------------+--------------+------+-----+---------+----------------+
+| id                   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| productName          | varchar(40)  | NO   |     | NULL    |                |
+| productDescription   | varchar(255) | YES  |     | NULL    |                |
+| manufacturedBy       | varchar(255) | NO   |     | NULL    |                |
+| retailPrice          | int(5)       | NO   |     | NULL    |                |
+| inventoryQuantity    | int(11)      | NO   |     | NULL    |                |
+| inventoryLastUpdated | datetime     | YES  |     | NULL    |                |
++----------------------+--------------+------+-----+---------+----------------+
+
+mysql> DESCRIBE transaction;
++-----------------+-----------------------------+------+-----+---------+----------------+
+| Field           | Type                        | Null | Key | Default | Extra          |
++-----------------+-----------------------------+------+-----+---------+----------------+
+| id              | int(11)                     | NO   | PRI | NULL    | auto_increment |
+| itemId          | int(11)                     | NO   |     | NULL    |                |
+| quantity        | int(11)                     | NO   |     | NULL    |                |
+| purchaseType    | enum('sale','refund')       | NO   |     | NULL    |                |
+| saleType        | enum('internal','external') | NO   |     | NULL    |                |
+| transactionDate | datetime                    | NO   |     | NULL    |                |
++-----------------+-----------------------------+------+-----+---------+----------------+
+
+### Exercise 14 (Workshop Challenge)
+  * What is the Store's income within a specific date range? 
+        1) Pull list of transactions between two dates
+        2) Group by transaction type 
+        3) Group by itemId 
+        4) multily quantity by retailPrice (item table)
+        5) Income = Sum of sale transactions and minus refund transactions
+  * What is the Store's top selling Inventory product?
+        1) Group transactions by itemID for only purchaseType=sale
+        2) Sum quantity sold for each itemID
+  * Which company produces the top selling Inventory product?
+        1) check the manufacturedBy column for the top itemID inventory product
+  * What is the top refunded Inventory product?
+        1) filter transactions by purchaseType=refund
+        2) Group by itemID
+        3) Sum quantity
+  * Which products should be taken out from the Store's Inventory?
+        1) group transactions by itemID
+        2) remove items that:
+            -have not been sold recently
+            -have only sold only small quantities
+            -have a high number of refunds
+  * Which companies should the Store stop selling products from?
+        1) check the manufacturedBy corresponding to the itemID in the above example
+  * What is the amount of Internal (Canadian) vs. External sales?
+        1) filter tansactions by saleType
+        2) group by itemID
+        3) multiply quantity of item sold by retail Price
+  * How many of a specific product remains in Inventory for a specific date?
+        a) refer to the inventoryLastUpdated date on the itemID
+        b) pull all transactions for that itemID between current day and modified time
+        c) if purchaseType=refund add quantity to inventory
+        d) if purchaseType=sale remove quantity from inventory
+        e) update item quantity and timestamp of inventoryLastUpdated
+            
