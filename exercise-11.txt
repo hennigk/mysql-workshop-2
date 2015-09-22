@@ -1,0 +1,22 @@
+mysql> USE decodemtl_addressbook_import;
+
+mysql> SELECT COUNT(*) FROM Entry WHERE type!="other";                                                                                   
++----------+
+| COUNT(*) |
++----------+
+|     2800 |
++----------+
+
+mysql> SELECT COUNT(*) FROM Entry WHERE type="home" OR type="work";
++----------+
+| COUNT(*) |
++----------+
+|     2800 |
++----------+
+
+mysql> SELECT COUNT(*) FROM Entry WHERE subtype="phone";                                                                                 
++----------+
+| COUNT(*) |
++----------+
+|      600 |
++----------+
