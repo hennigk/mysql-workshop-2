@@ -1,0 +1,22 @@
+USE decodemtl_addressbook_import;
+
+mysql> SELECT COUNT(*) FROM Entry WHERE birthday<"1982-02-12 00-00-00";
++----------+
+| COUNT(*) |
++----------+
+|     2687 |
++----------+
+
+mysql> SELECT COUNT(*) FROM Entry WHERE birthday>="1965-01-01 00-00-00";                                                             
++----------+
+| COUNT(*) |
++----------+
+|     2597 |
++----------+
+
+mysql> SELECT * FROM Entry ORDER BY birthday ASC LIMIT 1;                                                                                
++------+---------------+-----------+----------+---------------------+-------+---------+----------------+----------------+------------------+-----------------+-----------------+
+| id   | addressBookId | firstName | lastName | birthday            | type  | subtype | contentLineOne | contentLineTwo | contentLineThree | contentLineFour | contentLineFive |
++------+---------------+-----------+----------+---------------------+-------+---------+----------------+----------------+------------------+-----------------+-----------------+
+| 2260 |            93 | Abigail   | Rollins  | 1945-09-02 09:21:58 | other | address | 194 Non Road   | Berlin         | Berlin           | Bolivia         | 791155          |
++------+---------------+-----------+----------+---------------------+-------+---------+----------------+----------------+------------------+-----------------+-----------------+
