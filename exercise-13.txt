@@ -1,0 +1,126 @@
+mysql> SELECT contentLineOne, COUNT(*) FROM Entry WHERE subtype="phone" AND contentLineOne LIKE "3%" GROUP BY contentLineOne; 
+Empty set (0.00 sec)
+
+mysql> SELECT contentLineTwo, COUNT(*) FROM Entry WHERE subtype="phone" AND contentLineTwo LIKE "3%" GROUP BY contentLineTwo;   
+Empty set (0.01 sec)
+
+mysql> SELECT contentLineThree, COUNT(*) FROM Entry WHERE subtype="phone" AND contentLineThree LIKE "3%" GROUP BY contentLineThree;
+Empty set (0.00 sec)
+
+mysql> SELECT contentLineFour, COUNT(*) FROM Entry WHERE subtype="phone" AND contentLineFour LIKE "3%" GROUP BY contentLineFour;   
+Empty set (0.01 sec)
+
+mysql> SELECT contentLineFive, COUNT(*) FROM Entry WHERE subtype="phone" AND contentLineFive LIKE "3%" GROUP BY contentLineFive; 
+Empty set (0.00 sec)
+
+
+mysql> SELECT contentLineOne, COUNT(*) FROM Entry WHERE type="home" AND subtype="phone" AND contentLineOne NOT LIKE "%5%" GROUP BY contentLineOne;
++----------------+----------+
+| contentLineOne | COUNT(*) |
++----------------+----------+
+| (126) 217-8321 |        1 |
+| (129) 471-4717 |        1 |
+| (131) 400-6173 |        1 |
+| (186) 128-6976 |        1 |
+| (214) 699-6477 |        1 |
+| (229) 211-6934 |        1 |
+| (230) 232-6036 |        1 |
+| (234) 968-0270 |        1 |
+| (237) 703-9267 |        1 |
+| (270) 124-9996 |        1 |
+| (283) 867-9317 |        1 |
+| (306) 404-9698 |        1 |
+| (343) 211-1264 |        1 |
+| (360) 832-2279 |        1 |
+| (367) 420-6903 |        1 |
+| (394) 100-9308 |        1 |
+| (399) 881-2074 |        1 |
+| (419) 306-6490 |        1 |
+| (423) 826-2796 |        1 |
+| (436) 317-0266 |        1 |
+| (444) 898-2292 |        1 |
+| (462) 421-4741 |        1 |
+| (478) 274-8231 |        1 |
+| (484) 186-6212 |        1 |
+| (606) 399-8833 |        1 |
+| (644) 492-4863 |        1 |
+| (688) 439-1231 |        1 |
+| (700) 267-0114 |        1 |
+| (706) 287-8002 |        1 |
+| (727) 361-3316 |        1 |
+| (734) 343-4038 |        1 |
+| (767) 204-1418 |        1 |
+| (788) 742-1867 |        1 |
+| (794) 218-6784 |        1 |
+| (797) 886-6881 |        1 |
+| (808) 284-3400 |        1 |
+| (808) 610-9727 |        1 |
+| (832) 328-0479 |        1 |
+| (843) 890-1708 |        1 |
+| (863) 499-9203 |        1 |
+| (866) 863-4176 |        1 |
+| (884) 661-8280 |        1 |
+| (914) 268-9441 |        1 |
+| (928) 684-3184 |        1 |
+| (937) 788-7629 |        1 |
+| (976) 672-9100 |        1 |
+| (993) 716-7246 |        1 |
+| 1-211-621-9814 |        1 |
+| 1-273-409-2371 |        1 |
+| 1-274-963-8229 |        1 |
+| 1-301-231-6410 |        1 |
+| 1-310-644-2041 |        1 |
+| 1-322-609-4938 |        1 |
+| 1-373-831-1243 |        1 |
+| 1-377-998-8637 |        1 |
+| 1-400-929-7010 |        1 |
+| 1-404-723-9701 |        1 |
+| 1-410-600-4797 |        1 |
+| 1-413-711-3216 |        1 |
+| 1-431-897-1084 |        1 |
+| 1-476-360-7431 |        1 |
+| 1-487-603-8211 |        1 |
+| 1-643-901-6072 |        1 |
+| 1-661-848-0443 |        1 |
+| 1-679-932-8430 |        1 |
+| 1-734-748-4431 |        1 |
+| 1-747-179-2793 |        1 |
+| 1-791-134-9027 |        1 |
+| 1-801-316-3736 |        1 |
+| 1-821-917-6486 |        1 |
+| 1-842-621-4049 |        1 |
+| 1-862-704-6489 |        1 |
+| 1-873-187-1708 |        1 |
+| 1-878-906-7920 |        1 |
+| 1-937-247-9679 |        1 |
+| 1-998-977-4969 |        1 |
++----------------+----------+
+76 rows in set (0.00 sec)
+
+
+mysql> SELECT contentLineTwo, COUNT(*) FROM Entry WHERE type="home" AND subtype="phone" AND contentLineTwo NOT LIKE "%5%" GROUP BY contentLineTwo;
+Empty set (0.01 sec)
+
+mysql> SELECT contentLineThree, COUNT(*) FROM Entry WHERE type="home" AND subtype="phone" AND contentLineThree NOT LIKE "%5%" GROUP BY contentLineThree;
+Empty set (0.00 sec)
+
+mysql> SELECT contentLineFour, COUNT(*) FROM Entry WHERE type="home" AND subtype="phone" AND contentLineFour NOT LIKE "%5%" GROUP BY contentLineFour;
+Empty set (0.01 sec)
+
+
+mysql> SELECT contentLineFive, COUNT(*) FROM Entry WHERE type="home" AND subtype="phone" AND contentLineFive NOT LIKE "%5%" GROUP BY contentLineFive;
+Empty set (0.01 sec)
+
+mysql> SELECT COUNT(*) FROM Entry WHERE subtype="phone" AND contentLineOne LIKE "3%"; 
++----------+
+| COUNT(*) |
++----------+
+|        0 |
++----------+
+
+mysql> SELECT COUNT(*) FROM Entry WHERE type="home" AND subtype="phone" AND contentLineOne NOT LIKE "%5%";
++----------+
+| COUNT(*) |
++----------+
+|       76 |
++----------+
