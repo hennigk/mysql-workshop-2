@@ -1,0 +1,7 @@
+mysql> USE decodemtl_addressbook;
+
+mysql> TRUNCATE TABLE Entry;
+
+mysql> SELECT * FROM Entry;
+Empty set (0.00 sec)
+
